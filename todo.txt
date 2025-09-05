@@ -1,0 +1,1 @@
+• Determine number of layers and each node in layer
