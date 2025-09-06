@@ -1,0 +1,6 @@
+# editor
+.vscode
+
+# output
+obj
+SwiftTorch

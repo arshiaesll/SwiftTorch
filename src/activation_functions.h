@@ -1,6 +1,8 @@
 #ifndef ACTIVATIONS_FUNCTIONS_H
 #define ACTIVATIONS_FUNCTIONS_H
-#include <bits/stdc++.h>
+
+#include <cmath>
+#include <algorithm>
 
 double sigmoid(double z)
 {
@@ -9,7 +11,7 @@ double sigmoid(double z)
 
 double relu(double z)
 {
-  return std::max(0, z)
+  return std::max(0.0, z);
 }
 
 #endif

@@ -1,43 +1,46 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include "connection.h"
 #include <string>
+#include <vector>
+#include <random>
+#include "readable.h"
 
-struct Node
+#define MEAN 0.5
+#define DEVIATION 0.15
+
+struct Connection;
+
+struct Node : IReadable
 {
   std::vector<Connection> inputs_;
   std::vector<Connection> outputs_;
   double bias_;
   double pre_activation;
   double activated_output;
+  int row;
+  int col;
+
+  Node(int row, int col);
+
+  virtual ~Node() = default;
 
   // To calculate the raw output before the activation function
-  double calculate_pre_activation()
-  {
+  double calculate_pre_activation();
 
-    double sum = 0;
-    for (int i = 0; i < inputs_.size(); ++i)
-    {
-      sum += inputs_[i].weight_ * inputs_[i].node_->activated_output;
-    }
-    sum += bias_;
-  }
+  double calculate_activated_output(double (*activation_function)(double z));
 
-  double calculate_activated_output(double (*activation_function)(double z))
-  {
-    return activation_function(this->pre_activation);
-  }
+  std::string readable() override;
+};
 
-  std::string readable()
-  {
-    std::string output = "Node\n";
-    for (auto &o : outputs_)
-    {
-      output += "\t --" + std::to_string(o.weight_) + "-> Node";
-    }
-    return output;
-  }
+struct Connection
+{
+  double weight_;
+  Node *node_;
+
+  Connection();
+
+  double generate_weight();
 };
 
 #endif

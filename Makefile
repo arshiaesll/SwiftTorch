@@ -1,21 +1,39 @@
+# Project name
+TARGET = SwiftTorch
 
-CC=g++
-CCFLAGS= -Wall -std=c++17
+# Compiler and flags
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -I./src
 
-SRCS = ./src/main.cpp
-OBJS = $(SRCS:.cpp=.o)
+# Source and build directories
+SRC_DIR = src
+OBJ_DIR = obj
 
-TARGET = nn
+# Source and object files
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
+# Default rule
 all: $(TARGET)
 
+# Link the final binary
 $(TARGET): $(OBJS)
-	$(CC) $(CCFLAGS) -o $@ $^ 
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-%.o : %.cpp
+# Compile each .cpp into .o inside obj/
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-clean:
-	rm $(OBJS) $(TARGET)
+# Create obj/ directory if it doesn't exist
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-.PHONY: all clean
+# Clean build files
+clean:
+	rm -rf $(OBJ_DIR) $(TARGET)
+
+# Run the program
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean run
