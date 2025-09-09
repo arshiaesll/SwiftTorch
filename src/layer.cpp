@@ -8,7 +8,7 @@ Layer::Layer(int layer_index, int node_count)
   }
 }
 
-std::string Layer::readable()
+std::string Layer::readable() const
 {
   std::string readable = "";
   for (auto &node : nodes_)

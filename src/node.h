@@ -26,11 +26,11 @@ struct Node : IReadable
   virtual ~Node() = default;
 
   // To calculate the raw output before the activation function
-  double calculate_pre_activation();
+  double calculate_pre_activation() const;
 
-  double calculate_activated_output(double (*activation_function)(double z));
+  double calculate_activated_output(double (*activation_function)(double z)) const;
 
-  std::string readable() override;
+  std::string readable() const override;
 };
 
 struct Connection
@@ -40,7 +40,7 @@ struct Connection
 
   Connection();
 
-  double generate_weight();
+  double generate_weight() const;
 };
 
 #endif

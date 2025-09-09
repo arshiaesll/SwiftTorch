@@ -12,7 +12,7 @@ struct Layer : IReadable
 
   virtual ~Layer() = default;
 
-  std::string readable() override;
+  std::string readable() const override;
 };
 
 #endif

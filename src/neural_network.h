@@ -13,7 +13,7 @@ public:
 
   NeuralNetwork *add_layer(int node_count);
 
-  std::string readable() override;
+  std::string readable() const override;
 };
 
 #endif

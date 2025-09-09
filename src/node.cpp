@@ -8,7 +8,7 @@ Node::Node(int row, int col)
   this->col = col;
 }
 
-double Node::calculate_pre_activation()
+double Node::calculate_pre_activation() const
 {
   double sum = 0;
   for (size_t i = 0; i < inputs_.size(); ++i)
@@ -18,14 +18,19 @@ double Node::calculate_pre_activation()
   return sum + bias_;
 }
 
-double Node::calculate_activated_output(double (*activation_function)(double z))
+double Node::calculate_activated_output(double (*activation_function)(double z)) const
 {
   return activation_function(this->pre_activation);
 }
 
-std::string Node::readable()
+std::string Node::readable() const
 {
-  return "(" + std::to_string(this->row) + ", " + std::to_string(this->col) + ") " + std::to_string(this->outputs_.size()) + "\n";
+  std::string output = "(" + std::to_string(this->row) + ", " + std::to_string(this->col) + ") " + std::to_string(this->outputs_.size()) + "\n";
+  for (auto &c : outputs_)
+  {
+    output += "\t" + std::to_string(c.weight_) + "\n";
+  }
+  return output;
 }
 
 // Connection
@@ -36,7 +41,7 @@ Connection::Connection()
   node_ = nullptr;
 }
 
-double Connection::generate_weight()
+double Connection::generate_weight() const
 {
   {
     std::random_device rd;

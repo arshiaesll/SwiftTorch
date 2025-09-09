@@ -26,7 +26,7 @@ NeuralNetwork *NeuralNetwork::add_layer(int node_count)
   return this;
 }
 
-std::string NeuralNetwork::readable()
+std::string NeuralNetwork::readable() const
 {
   std::string output = "";
   for (auto &layer : layers_)

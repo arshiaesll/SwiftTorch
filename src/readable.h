@@ -6,7 +6,7 @@
 class IReadable
 {
 public:
-  virtual std::string readable() = 0;
+  virtual std::string readable() const = 0;
 };
 
 #endif
