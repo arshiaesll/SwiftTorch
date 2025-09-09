@@ -26,6 +26,18 @@ NeuralNetwork *NeuralNetwork::add_layer(int node_count)
   return this;
 }
 
+std::vector<double> NeuralNetwork::forward_pass()
+{
+  std::vector<double> output;
+  for (auto &layer : layers_)
+  {
+    output = layer.forward_pass();
+  }
+
+  // This returns the last layers output which should be model's output
+  return output;
+}
+
 std::string NeuralNetwork::readable() const
 {
   std::string output = "";

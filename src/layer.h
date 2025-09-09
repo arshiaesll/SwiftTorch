@@ -13,6 +13,7 @@ struct Layer : IReadable
   virtual ~Layer() = default;
 
   std::string readable() const override;
+  std::vector<double> forward_pass() const;
 };
 
 #endif

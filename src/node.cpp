@@ -1,5 +1,5 @@
 #include "node.h"
-
+#include "activation_functions.h"
 // Node
 
 Node::Node(int row, int col)
@@ -18,7 +18,7 @@ double Node::calculate_pre_activation() const
   return sum + bias_;
 }
 
-double Node::calculate_activated_output(double (*activation_function)(double z)) const
+double Node::calculate_activated_output(double (*activation_function)(double z) = sigmoid) const
 {
   return activation_function(this->pre_activation);
 }

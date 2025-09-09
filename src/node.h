@@ -15,6 +15,7 @@ struct Node : IReadable
 {
   std::vector<Connection> inputs_;
   std::vector<Connection> outputs_;
+  // The input bias
   double bias_;
   double pre_activation;
   double activated_output;

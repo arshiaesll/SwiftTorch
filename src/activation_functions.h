@@ -4,14 +4,14 @@
 #include <cmath>
 #include <algorithm>
 
-double sigmoid(double z)
+inline double sigmoid(double z)
 {
-  return 1 / std::exp(-z);
+    return 1 / std::exp(-z);
 }
 
-double relu(double z)
+inline double relu(double z)
 {
-  return std::max(0.0, z);
+    return std::max(0.0, z);
 }
 
 #endif

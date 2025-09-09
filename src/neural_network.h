@@ -14,6 +14,7 @@ public:
   NeuralNetwork *add_layer(int node_count);
 
   std::string readable() const override;
+  std::vector<double> forward_pass();
 };
 
 #endif

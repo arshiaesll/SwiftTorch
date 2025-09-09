@@ -1,4 +1,5 @@
 #include "layer.h"
+#include "activation_functions.h"
 
 Layer::Layer(int layer_index, int node_count)
 {
@@ -16,4 +17,18 @@ std::string Layer::readable() const
     readable += node.readable();
   }
   return readable;
+}
+
+std::vector<double> Layer::forward_pass() const
+{
+
+  std::vector<double> output;
+
+  for (auto &node : nodes_)
+  {
+    // TODO: we need to change this to pass the layer activation function
+    output.push_back(node.calculate_activated_output(sigmoid));
+  }
+
+  return output;
 }
